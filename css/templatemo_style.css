@@ -1,0 +1,1145 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:100,400,300,500,700);
+/* استيراد خط Roboto من Google Fonts بأنماط مختلفة */
+
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+/* استيراد خط Montserrat من Google Fonts بنسختين */
+
+.overlay h4 {
+    position: relative; /* يجعل العنصر يتحرك بالنسبة لمكانه الطبيعي */
+    top: 50%; /* يحرك العنصر لأسفل بمقدار 50% من ارتفاع العنصر الأب */
+    -webkit-transform: translateY(-50%); /* يحرك العنصر للأعلى نصف ارتفاعه (لمتصفحات Chrome/Safari) */
+    -ms-transform: translateY(-50%); /* نفس الشيء لمتصفح IE/Edge */
+    transform: translateY(-50%); /* نفس الشيء للمتصفحات الأخرى */
+    /* الهدف: محاذاة العنصر عمودياً في منتصف العنصر الأب */
+}
+
+.header-wrapper:after {
+    content: ""; /* إضافة عنصر افتراضي بعد محتوى header-wrapper */
+    display: table; /* جعله عنصر جدول افتراضي ليساعد في تنظيف الطفو */
+    clear: both; /* يمنع العناصر الطافيه من التأثير على العناصر التالية */
+    /* الهدف: حل مشاكل ارتفاع العنصر الأب عند استخدام عناصر floated */
+}
+
+.blue {
+	color: #0F0; /* لون النص أخضر (عادة blue تعني أزرق لكن هنا تم تحديد أخضر) */
+}
+
+.green {
+	color: #0F0; /* لون النص أخضر */
+}
+
+/* ==============================================
+   Reset CSS: إزالة التنسيقات الافتراضية للمتصفحات
+   ============================================== */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption,
+tbody, tfoot, thead, tr, th, td, article,
+aside, canvas, details, embed, figure,
+figcaption, footer, header, hgroup, menu,
+nav, output, ruby, section, summary, time,
+mark, audio, video {
+    margin: 0;          /* إزالة الهوامش الافتراضية */
+    padding: 0;         /* إزالة الحشوة الافتراضية */
+    border: 0;          /* إزالة أي إطار افتراضي */
+    font-size: 100%;    /* إعادة حجم الخط إلى القيمة الافتراضية */
+    font: inherit;      /* استخدام نفس خط العنصر الأب */
+    vertical-align: baseline; /* محاذاة العناصر بشكل افتراضي */
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block; /* جعل هذه العناصر بلوك لتكون متوافقة مع HTML5 */
+}
+
+body {
+    line-height: 1; /* ضبط ارتفاع السطر ليكون 1 لتوحيد التباعد */
+}
+
+ol, ul {
+    list-style: none; /* إزالة النقاط أو الأرقام الافتراضية للقوائم */
+}
+
+blockquote, q {
+    quotes: none; /* إزالة علامات الاقتباس الافتراضية */
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';    /* إزالة المحتوى الافتراضي لعلامات الاقتباس */
+    content: none;  /* نفس الشيء لمزيد من التوافق */
+}
+
+table {
+    border-collapse: collapse; /* دمج حدود الخلايا لتبدو متصلة */
+    border-spacing: 0;         /* إزالة الفراغ بين الخلايا */
+}
+
+html {
+    box-sizing: border-box; 
+    /* يجعل حساب عرض وارتفاع العناصر يشمل الحشوة (padding) والإطار (border) داخل الحجم الكلي */
+}
+
+*, *:before, *:after {
+    box-sizing: inherit; 
+    /* جميع العناصر وعناصر pseudo (:before, :after) ترث box-sizing من العنصر الأب (هنا html) */
+}
+
+.site-header {
+    margin-bottom: 5px; 
+    /* إضافة مسافة أسفل رأس الموقع لفصل المحتوى التالي */
+}
+
+.header-wrapper {
+    border-bottom: 1px solid #996600; 
+       /* خط أسفل الرأس بلون بني (#996600) وسمك 1px */
+    padding: 20px 50; 
+    /* مسافة داخلية أعلى وأسفل الرأس 60px، بدون مسافة أفقية */
+    position: relative; 
+    /* لتحديد الإطار المرجعي لعناصر مطلقة داخل هذا العنصر */
+}
+
+
+a.toggle-nav {
+    position: absolute; 
+    /* العنصر سيتم تحديد موقعه بشكل مطلق داخل الأب الذي له position: relative (header-wrapper) */
+    top: 0; 
+    /* يثبت العنصر أعلى الرأس */
+    right: 0; 
+    /* يثبت العنصر على اليمين */
+    margin: 60px 0; 
+    /* مسافة أعلى وأسفل 60px (تأثير إضافي لضبط الموضع) */
+    width: 46px; 
+    /* عرض العنصر 46px */
+    height: 46px; 
+    /* ارتفاع العنصر 46px */
+    background: #996600; 
+    /* لون خلفية العنصر بني */
+    text-align: center; 
+    /* محاذاة النص داخل العنصر في المنتصف أفقيًا */
+    line-height: 46px; 
+    /* يجعل النص داخل العنصر محاذيًا عموديًا (نفس ارتفاع العنصر) */
+}
+
+a.toggle-nav i {
+    font-size: 16px; 
+    /* حجم أيقونة داخل زر القائمة المتحركة 16px */
+}
+
+a.toggle-nav:hover {
+    color: #fff; 
+    /* عند تمرير الماوس على زر القائمة، يتحول لون النص/الأيقونة إلى أبيض */
+}
+
+.site-branding h1 {
+    font-family: 'Montserrat', sans-serif; 
+    /* استخدام خط Montserrat للعناوين */
+    font-size: 30px; 
+    /* حجم الخط 30px */
+    font-weight: 100; 
+    /* سمك الخط: 100 = سميك */
+    color: #fff; 
+    /* لون النص أبيض */
+    text-transform: uppercase; 
+    /* تحويل النص كله إلى حروف كبيرة */
+}
+
+nav.main-navigation .main-menu li a {
+    display: inline-block;       /* لكي تعمل padding و border */
+    border: 1px solid #996600;  /* لون الإطار */
+    border-radius: 5px;         /* الزوايا الدائرية */
+    padding: 5px 10px;           /* المسافات الداخلية */
+    text-decoration: none;       /* إزالة الخط السفلي */
+    color: #996600;              /* لون النص */
+    transition: 0.3s;            /* تأثير التحول عند hover */
+}
+
+nav.main-navigation .main-menu li a:hover,
+nav.main-navigation .main-menu li a.active {
+    background-color: #007bff;   /* لون الخلفية عند المرور أو زر نشط */
+    color: white;                /* لون النص عند المرور أو زر نشط */
+}
+
+/* ==========================================
+   Media Queries: لتغيير التنسيقات حسب حجم الشاشة
+   ========================================== */
+
+/* عند عرض الشاشة 992px أو أقل */
+@media screen and (max-width: 992px) {
+    nav.main-navigation {
+        margin-top: 20px;   /* تقليل المسافة العليا للشريط الرئيسي عند الشاشات الصغيرة */
+        text-align: left;   /* محاذاة النصوص داخل الشريط الرئيسي إلى اليسار */
+    }
+}
+
+/* عند عرض الشاشة 992px أو أقل */
+@media screen and (max-width: 992px) {
+    .menu-responsive {
+        display: none; /* إخفاء القائمة المتجاوبة (Responsive Menu) في الشاشات الصغيرة */
+    }
+}
+
+/* عند عرض الشاشة 993px أو أكثر */
+@media screen and (min-width: 993px) {
+    .container {
+        padding-right: 40px; /* إضافة مسافة أفقية من اليمين */
+        padding-left: 40px;  /* إضافة مسافة أفقية من اليسار */
+    }
+}
+
+/* عند عرض الشاشة 1040px أو أقل */
+@media screen and (max-width: 1040px) {
+    .container {
+        padding-right: 40px; /* إضافة مسافة أفقية من اليمين */
+        padding-left: 40px;  /* إضافة مسافة أفقية من اليسار */
+        /* الهدف: ضبط الحشوة الأفقية في الشاشات المتوسطة */
+    }
+}
+
+ul.main-menu {
+    display: flex;         /* يجعل القائمة أفقية */
+    flex-direction: row;   /* العناصر في صف أفقي */
+    gap: 15px;             /* مسافة بين الأزرار */
+    list-style: none;      /* إزالة النقاط الافتراضية */
+    padding: 0;
+    margin: 0;
+}
+
+ul.main-menu li {
+    display: block;        /* كل عنصر الآن داخل flex */
+}
+
+ul.main-menu li a {
+    padding: 10px 15px;         /* مسافة داخلية أعلى/أسفل 10px، يمين/يسار 15px */
+    text-transform: uppercase;  /* تحويل نص الرابط إلى حروف كبيرة */
+    font-size: 13px;            /* حجم خط الروابط 13px */
+}
+
+ul.main-menu li a.active {
+    background: #d49e4d; /* لون خلفية العنصر النشط (الصفحة الحالية) */
+    color: #fff;         /* لون النص في العنصر النشط أبيض */
+}
+
+/* عند عرض الشاشة 992px أو أقل (للهواتف والأجهزة الصغيرة) */
+@media screen and (max-width: 992px) {
+    ul.main-menu {
+        background: #d49e4d; /* تغيير خلفية القائمة عند الشاشات الصغيرة */
+        padding: 10px 0;     /* حشوة أعلى وأسفل 10px داخل القائمة */
+    }
+}
+
+ul.main-menu li {
+    display: block;       /* جعل عناصر القائمة رأسية (عمودية) */
+    margin-left: 0;       /* إزالة أي مسافة على اليسار */
+    margin-right: 0;      /* إزالة أي مسافة على اليمين */
+    margin-bottom: 10px;  /* مسافة أسفل كل عنصر 10px */
+    margin-top: 10px;     /* مسافة أعلى كل عنصر 10px */
+}
+
+ul.main-menu li a {
+    font-size: 15px;      /* حجم الخط داخل الرابط 15px */
+    font-weight: 300;     /* سمك الخط خفيف */
+}
+
+ul.main-menu li a.active {
+    background: inherit;  /* خلفية العنصر النشط تبقى مثل الخلفية الأصلية */
+    color: #996600;       /* لون النص في العنصر النشط بني */
+}
+
+/* ===================== */
+.content {
+    display: none;        /* إخفاء العناصر التي تحمل الكلاس content بشكل افتراضي */
+}
+
+.home-intro {
+    margin-bottom: 100px; /* مسافة أسفل قسم المقدمة الرئيسية 100px */
+}
+
+.home-intro p {
+    font-size: 22px;              /* حجم الخط للنصوص داخل قسم المقدمة 18px */
+    line-height: 1.85;            /* ارتفاع السطر ليكون النص مريح للقراءة */
+    width: 80%;                    /* عرض الفقرة 80% من عرض الحاوية */
+    margin: 0 auto;                /* توسيط الفقرة أفقياً داخل الحاوية */
+    -moz-animation-delay: 0.5s;   /* تأخير بداية أي حركة CSS في متصفح Firefox */
+    -webkit-animation-delay: 0.5s;/* تأخير بداية أي حركة CSS في Chrome/Safari */
+    animation-delay: 0.5s;         /* تأخير بداية أي حركة CSS للمتصفحات الأخرى */
+}
+
+h2.welcome-title {
+    font-weight: 100;              /* سمك الخط خفيف جدًا */
+    color: #d49e4d;                /* لون النص أصفر/ذهبي */
+    font-size: 44px;               /* حجم الخط الكبير للعنوان */
+    margin-bottom: 10px;           /* مسافة أسفل العنوان 10px */
+    -moz-animation-delay: 0.1s;   /* تأخير حركة العنوان في Firefox */
+    -webkit-animation-delay: 0.1s;/* تأخير حركة العنوان في Chrome/Safari */
+    animation-delay: 0.1s;         /* تأخير الحركة للمتصفحات الأخرى */
+}
+
+/* عند عرض الشاشة 992px أو أقل (للهواتف والأجهزة الصغيرة) */
+@media screen and (max-width: 992px) {
+    h2.welcome-title {
+        font-size: 34px;           /* تصغير حجم الخط على الشاشات الصغيرة لتناسب العرض */
+    }
+}
+
+.list-icons {
+    margin-top: 50px;              /* مسافة أعلى قسم الأيقونات 50px */
+    -moz-animation-delay: 0.9s;   /* تأخير بداية أي حركة CSS في Firefox */
+    -webkit-animation-delay: 0.9s;/* تأخير بداية أي حركة CSS في Chrome/Safari */
+    animation-delay: 0.9s;         /* تأخير بداية أي حركة CSS للمتصفحات الأخرى */
+}
+
+.list-icons li {
+    display: inline-block;         /* جعل عناصر القائمة أفقية بجانب بعضها */
+    margin: 15px 40px;             /* مسافة 15px أعلى/أسفل و40px يمين/يسار بين العناصر */
+}
+
+.list-icons li i {
+    font-size: 30px;               /* حجم الأيقونة داخل القائمة 30px */
+    color: #d49e4d;                /* لون الأيقونة أصفر/ذهبي */
+}
+
+.home-projects {
+    margin-bottom: 50px;          /* مسافة أسفل قسم المشاريع الرئيسية 50px */
+}
+
+.home-projects h2 {
+    color: #d49e4d;                /* لون عنوان المشاريع أصفر/ذهبي */
+    font-size: 36px;               /* حجم الخط للعنوان 36px */
+    margin-top: 0;                 /* إزالة أي مسافة أعلى العنوان */
+    margin-bottom: 35px;           /* مسافة أسفل العنوان 35px */
+}
+
+.home-projects p {
+    margin-bottom: 32px; 
+    /* مسافة أسفل كل فقرة داخل قسم المشاريع الرئيسية */
+}
+
+.project-title {
+    padding: 40px; 
+    /* مسافة داخلية حول محتوى عنوان المشروع */
+    background: #d49e4d; 
+    /* خلفية فاتحة للعنوان */
+    margin-bottom: 20px; 
+    /* مسافة أسفل عنوان المشروع قبل باقي المحتوى */
+    -moz-animation-delay: 0.5s; 
+    /* تأخير الحركة في Firefox */
+    -webkit-animation-delay: 0.5s; 
+    /* تأخير الحركة في Chrome/Safari */
+    animation-delay: 0.5s; 
+    /* تأخير الحركة في المتصفحات الأخرى */
+}
+
+.project-item {
+    margin-bottom: 30px; 
+    /* مسافة أسفل كل عنصر مشروع قبل العنصر التالي */
+    position: relative; 
+    /* لتكون العناصر المطلقة داخل المشروع مرجعية لهذا العنصر */
+    overflow: hidden; 
+    /* يمنع أي محتوى زائد عن حدود العنصر من الظهور */
+    border: 2px solid #d49e4d; 
+    /* إطار حول كل مشروع بلون أصفر/ذهبي وسمك 2px */
+    -moz-backface-visibility: hidden; 
+    -webkit-backface-visibility: hidden; 
+    backface-visibility: hidden; 
+    /* تحسين أداء الحركات ثلاثية الأبعاد ومنع ظهور "وجه خلفي" عند الدوران */
+    border-radius: 10px; 
+    /* زاوية دائرية للحواف، يمكن تعديل الرقم حسب الرغبة */
+}
+
+.project-item img {
+    width: 100%;       /* تجعل الصورة تملأ عرض العنصر بالكامل */
+    display: block;    /* إزالة الفراغات أسفل الصورة وجعلها عنصر كتلي */
+}
+
+.overlay {
+    position: absolute;                /* يجعل العنصر موضعه مطلق داخل المشروع */
+    width: 100%;                       /* عرض العنصر يغطي المشروع بالكامل */
+    height: 100%;                      /* ارتفاع العنصر يغطي المشروع بالكامل */
+    top: 0;                             /* يبدأ من أعلى المشروع */
+    left: 0;                            /* يبدأ من يسار المشروع */
+    background: rgba(200,160,70,0.65); /* خلفية شبه شفافة باللون الأصفر/ذهبي */
+    text-align: center;                 /* محاذاة أي نص أو محتوى داخل العنصر أفقيًا في المنتصف */
+    opacity: 0;                         /* العنصر مخفي في البداية */
+    -webkit-transition: all 200ms ease-in-out; /* تأثير الانتقال بسلاسة لمتصفح Chrome/Safari */
+    -moz-transition: all 200ms ease-in-out;    /* نفس الشيء لمتصفح Firefox */
+    -ms-transition: all 200ms ease-in-out;     /* نفس الشيء لمتصفح IE/Edge */
+    -o-transition: all 200ms ease-in-out;      /* نفس الشيء لمتصفح Opera */
+    transition: all 200ms ease-in-out;        /* تأثير الانتقال لمتصفحات أخرى */
+    -moz-transform: rotate(45deg);      /* تدوير العنصر 45 درجة في Firefox */
+    -ms-transform: rotate(45deg);       /* تدوير العنصر 45 درجة في IE/Edge */
+    -o-transform: rotate(45deg);        /* تدوير العنصر 45 درجة في Opera */
+    -webkit-transform: rotate(45deg);   /* تدوير العنصر 45 درجة في Chrome/Safari */
+    transform: rotate(45deg);           /* تدوير العنصر 45 درجة في المتصفحات الأخرى */
+}
+
+.overlay h4 {
+    font-size: 18px; 
+    /* حجم النص داخل العنوان h4 في العنصر overlay */
+}
+
+.overlay h4 a {
+    color: #fff; 
+    /* لون الروابط داخل العنوان في overlay أبيض */
+}
+
+.project-item:hover .overlay {
+    opacity: 1; 
+    /* عند المرور بالماوس على المشروع، يصبح overlay ظاهرًا */
+    -moz-transform: rotate(0); 
+    /* إعادة العنصر إلى زاوية 0 درجة في Firefox */
+    -ms-transform: rotate(0); 
+    /* إعادة العنصر إلى زاوية 0 درجة في IE/Edge */
+    -o-transform: rotate(0); 
+    /* إعادة العنصر إلى زاوية 0 درجة في Opera */
+    -webkit-transform: rotate(0); 
+    /* إعادة العنصر إلى زاوية 0 درجة في Chrome/Safari */
+    transform: rotate(0); 
+    /* إعادة العنصر إلى زاوية 0 درجة في المتصفحات الأخرى */
+}
+
+.project-item.one {
+    -moz-animation-delay: 0.5s; 
+    /* تأخير حركة العنصر الأول 0.5 ثانية في Firefox */
+    -webkit-animation-delay: 0.5s; 
+    /* نفس الشيء لمتصفح Chrome/Safari */
+    animation-delay: 0.5s; 
+    /* نفس الشيء للمتصفحات الأخرى */
+}
+
+.project-item.two {
+    -moz-animation-delay: 1s; 
+    /* تأخير حركة العنصر الثاني 1 ثانية في Firefox */
+    -webkit-animation-delay: 1s; 
+    /* نفس الشيء لمتصفح Chrome/Safari */
+    animation-delay: 1s; 
+    /* نفس الشيء للمتصفحات الأخرى */
+}
+
+.project-item.three {
+    -moz-animation-delay: 1.5s;       /* تأخير حركة العنصر الثالث 1.5 ثانية في Firefox */
+    -webkit-animation-delay: 1.5s;    /* نفس الشيء لمتصفح Chrome/Safari */
+    animation-delay: 1.5s;            /* نفس الشيء للمتصفحات الأخرى */
+}
+
+.project-item.four {
+    -moz-animation-delay: 2s;         /* تأخير حركة العنصر الرابع 2 ثانية في Firefox */
+    -webkit-animation-delay: 2s;      /* نفس الشيء لمتصفح Chrome/Safari */
+    animation-delay: 2s;              /* نفس الشيء للمتصفحات الأخرى */
+}
+
+.our-story {
+    padding: 0 50px;                  /* مسافة أفقية داخل القسم 50px */
+    margin-top: 30px;                 /* مسافة أعلى القسم 30px */
+    position: relative;               /* لتكون العناصر المطلقة داخله مرجعية له */
+    overflow: hidden;                 /* منع أي محتوى زائد من الظهور خارج القسم */
+}
+
+.story-bg {
+    background: url("../img/story-bg.jpg"); /* صورة خلفية للقسم */
+    background-repeat: no-repeat;           /* عدم تكرار الصورة */
+    background-size: cover;                 /* تكبير الصورة لتغطية كامل العنصر */
+    position: absolute;                     /* تحديد موضع الصورة مطلق داخل القسم */
+    width: 100%;                            /* عرض الصورة يغطي القسم بالكامل */
+    height: 100%;                           /* ارتفاع الصورة يغطي القسم بالكامل */
+    top: 0;                                 /* بداية الصورة من أعلى العنصر */
+    left: 0;                                /* بداية الصورة من يسار العنصر */
+    -moz-animation-delay: 1.7s;            /* تأخير حركة الخلفية في Firefox */
+    -webkit-animation-delay: 1.7s;         /* نفس الشيء لمتصفح Chrome/Safari */
+    animation-delay: 1.7s;                 /* نفس الشيء للمتصفحات الأخرى */
+}
+
+.inner-story {
+    background: #d49e4d;                  /* خلفية العنصر داخلي بلون أصفر/ذهبي */
+    padding: 40px;                         /* مسافة داخلية حول المحتوى 40px */
+    color: #fff7e6;                        /* لون النص داخل العنصر */
+    -moz-animation-delay: 0.5s;           /* تأخير الحركة في Firefox */
+    -webkit-animation-delay: 0.5s;        /* نفس الشيء لمتصفح Chrome/Safari */
+    animation-delay: 0.5s;                /* نفس الشيء للمتصفحات الأخرى */
+}
+
+.inner-story h2 {
+    margin-bottom: 30px;                   /* مسافة أسفل العنوان داخل inner-story */
+}
+
+.inner-story p {
+    margin-bottom: 0;                      /* إزالة المسافة أسفل الفقرة */
+}
+
+.our-offers {
+    margin-top: 3px;                       /* مسافة صغيرة أعلى قسم العروض */
+    padding:  50px;                       /* مسافة أفقية داخل القسم 50px */
+    position: relative;                     /* لتكون العناصر المطلقة داخله مرجعية له */
+    overflow: hidden;                       /* منع أي محتوى زائد من الظهور خارج القسم */
+    margin-bottom: 120px;                   /* مسافة أسفل القسم 120px */
+}
+
+.offer-bg {
+    background: url("../img/offer-bg.jpg"); /* صورة خلفية لقسم العروض */
+    background-repeat: no-repeat;           /* عدم تكرار الصورة */
+    background-size: cover;                 /* تكبير الصورة لتغطية كامل العنصر */
+    position: absolute;                     /* تحديد موضع الصورة مطلق داخل القسم */
+    width: 100%;                            /* عرض الصورة يغطي القسم بالكامل */
+    height: 100%;                            /* ارتفاع الصورة يغطي 69% من القسم */
+    top: 0;                                 /* بداية الصورة من أعلى العنصر */
+    left: 0;                                /* بداية الصورة من يسار العنصر */
+    -moz-animation-delay: 3.6s;            /* تأخير الحركة في Firefox */
+    -webkit-animation-delay: 3.6s;         /* نفس الشيء لمتصفح Chrome/Safari */
+    animation-delay: 3.6s;                 /* نفس الشيء للمتصفحات الأخرى */
+}
+
+.offer-title {
+    color: #d49e4d;                  /* لون نص عنوان العرض أصفر/ذهبي */
+    padding: 30px;                    /* مسافة داخلية حول النص 30px */
+    background: #fff;                 /* خلفية بيضاء للعنوان */
+    margin-bottom: 40px;              /* مسافة أسفل العنوان قبل باقي المحتوى */
+    -moz-animation-delay: 1.2s;      /* تأخير الحركة في Firefox */
+    -webkit-animation-delay: 1.2s;   /* تأخير الحركة في Chrome/Safari */
+    animation-delay: 1.2s;           /* تأخير الحركة للمتصفحات الأخرى */
+}
+
+.offer-item {
+    margin-top: 10px;                 /* مسافة أعلى كل عنصر عرض قبل العنصر السابق */
+    overflow: hidden;                 /* منع أي محتوى زائد عن العنصر من الظهور */
+}
+
+.offer-item figure {
+    /* حاليًا لا توجد خصائص محددة لهذا العنصر */
+}
+
+.offer-item figure img {
+    width: 100%;                      /* تجعل الصورة تملأ عرض العنصر بالكامل */
+    display: block;                   /* إزالة الفراغ أسفل الصورة وجعلها عنصر كتلي */
+}
+
+.offer-content {
+    padding: 30px;                     /* مسافة داخلية حول محتوى العرض */
+    background: #fff;                  /* خلفية بيضاء للمحتوى */
+    color: #d49e4d;                    /* لون النص أصفر/ذهبي */
+    border: 3px solid #d49e4d;         /* إطار حول العنصر بلون أصفر/ذهبي وسمك 3px */
+    position: relative;                /* لتكون العناصر المطلقة داخله مرجعية له */
+}
+
+.offer-content h4 {
+    margin-bottom: 15px;     /* مسافة أسفل العنوان الفرعي داخل محتوى العرض */
+    font-weight: normal;     /* وزن الخط طبيعي */
+}
+
+.offer-content p {
+    margin-bottom: 0;        /* إزالة المسافة أسفل الفقرة داخل محتوى العرض */
+}
+
+span.offer-left {
+    position: absolute;      /* تحديد موقع العنصر بشكل مطلق داخل offer-content */
+    bottom: -1px;            /* وضعه عند أسفل العنصر مع تعديل بسيط للخارج */
+    left: -1px;              /* وضعه على يسار العنصر مع تعديل بسيط للخارج */
+    width: 30px;             /* عرض العنصر 30px */
+    height: 30px;            /* ارتفاع العنصر 30px */
+}
+
+.offer-left>i {
+    position: absolute;         /* جعل العنصر أيقونة مطلقة داخل span.offer-left */
+    display: inline-block;      /* عنصر كتلي داخل العنصر الأب */
+    width: 0;                   /* عرض العنصر 0، يستخدم مع الحدود لتشكيل مثلث */
+    height: 0;                  /* ارتفاع العنصر 0 */
+    line-height: 0;             /* إزالة ارتفاع السطر الافتراضي */
+    border: 15px solid transparent;   /* إنشاء حدود شفافة لتشكيل المثلث */
+    border-left: 15px solid #d49e4d; /* جعل الحدود اليسرى صفراء/ذهبية */
+    border-bottom: 15px solid #d49e4d; /* جعل الحدود السفلية صفراء/ذهبية */
+    left: 0px;                  /* ضبط موقع العنصر داخل span */
+    top: 0px;                   /* ضبط موقع العنصر داخل span */
+}
+
+span.offer-right {
+    position: absolute; /* يحدد موضع العنصر بالنسبة للأب بشكل مطلق */
+    bottom: -1px;       /* يضع العنصر أسفل العنصر الأب بمقدار 1px خارج الحدود */
+    right: -1px;        /* يضع العنصر على يمين العنصر الأب بمقدار 1px خارج الحدود */
+    width: 30px;        /* عرض العنصر 30px */
+    height: 30px;       /* ارتفاع العنصر 30px */
+}
+
+.offer-right>i {
+    position: absolute;           /* يحدد موضع العنصر i داخل span بشكل مطلق */
+    display: inline-block;        /* يجعل العنصر يظهر ككتلة صغيرة يمكن تحديد أبعادها */
+    width: 0;                     /* العرض صفر لأنه سيتم رسم المثلث عبر الحدود */
+    height: 0;                    /* الارتفاع صفر لنفس السبب */
+    line-height: 0;               /* يمنع أي ارتفاع خط إضافي */
+    border: 15px solid transparent; /* يجعل جميع حدود العنصر شفافة أولًا */
+    border-right: 15px solid #d49e4d; /* يجعل الحد الأيمن باللون الذهبي لرسم المثلث */
+    border-bottom: 15px solid #d49e4d; /* يجعل الحد السفلي باللون الذهبي لإكمال المثلث */
+    left: 0px;                    /* يضع العنصر i في أقصى يسار span */
+    top: 0px;                     /* يضع العنصر i في أعلى span */
+}
+
+.offer-1 {
+    -moz-animation-delay: 2.1s;      /* تأخير بدء التحريك في متصفح Firefox بمقدار 2.1 ثانية */
+    -webkit-animation-delay: 2.1s;   /* تأخير بدء التحريك في متصفح Chrome/Safari بمقدار 2.1 ثانية */
+    animation-delay: 2.1s;           /* تأخير بدء التحريك بشكل عام بمقدار 2.1 ثانية */
+}
+
+.offer-2 {
+    -moz-animation-delay: 2.8s;      /* تأخير بدء التحريك في Firefox بمقدار 2.8 ثانية */
+    -webkit-animation-delay: 2.8s;   /* تأخير بدء التحريك في Chrome/Safari بمقدار 2.8 ثانية */
+    animation-delay: 2.8s;           /* تأخير بدء التحريك بشكل عام بمقدار 2.8 ثانية */
+}
+
+.projects-header {
+    margin-top: 15px;       /* يضيف مسافة 30px أعلى العنصر */
+    margin-bottom: 10px;    /* يضيف مسافة 10px أسفل العنصر */
+    text-align: center;     /* يجعل النصوص داخل العنصر في منتصف العرض */
+}
+
+.projects-header h2 {
+    font-weight: 100;       /* يحدد سماكة الخط بحيث تكون خفيفة جدًا */
+    color: #fff;            /* يلون النص باللون الأبيض */
+    font-size: 36px;        /* يحدد حجم الخط 36px */
+    margin-bottom: 30px;    /* يضيف مسافة 30px أسفل العنوان */
+    -moz-animation-delay: 0.5s;     /* تأخير بدء التحريك في Firefox بمقدار 0.5 ثانية */
+    -webkit-animation-delay: 0.5s;  /* تأخير بدء التحريك في Chrome/Safari بمقدار 0.5 ثانية */
+    animation-delay: 0.5s;          /* تأخير بدء التحريك بشكل عام بمقدار 0.5 ثانية */
+}
+
+.projects-header p {
+    font-size: 17px;        /* يحدد حجم الخط للنصوص 17px */
+    line-height: 1.75em;    /* يحدد ارتفاع السطر بمقدار 1.75 من حجم الخط */
+    -moz-animation-delay: 1s;        /* تأخير بدء التحريك في Firefox بمقدار 1 ثانية */
+    -webkit-animation-delay: 1s;     /* تأخير بدء التحريك في Chrome/Safari بمقدار 1 ثانية */
+    animation-delay: 1s;             /* تأخير بدء التحريك بشكل عام بمقدار 1 ثانية */
+}
+
+.projects-holder {
+    margin-bottom: 80px;    /* يضيف مسافة 80px أسفل الحاوية التي تحتوي المشاريع */
+}
+
+.p-1 {
+    -moz-animation-delay: 1.7s;       /* تأخير بدء التحريك في Firefox بمقدار 1.7 ثانية */
+    -webkit-animation-delay: 1.7s;    /* تأخير بدء التحريك في Chrome/Safari بمقدار 1.7 ثانية */
+    animation-delay: 1.7s;            /* تأخير بدء التحريك بشكل عام بمقدار 1.7 ثانية */
+}
+
+.p-2 {
+    -moz-animation-delay: 2s;      /* تأخير بدء التحريك في Firefox بمقدار 2 ثانية */
+    -webkit-animation-delay: 2s;   /* تأخير بدء التحريك في Chrome/Safari بمقدار 2 ثانية */
+    animation-delay: 2s;           /* تأخير بدء التحريك بشكل عام بمقدار 2 ثانية */
+}
+
+.p-3 {
+    -moz-animation-delay: 2.3s;    /* تأخير بدء التحريك في Firefox بمقدار 2.3 ثانية */
+    -webkit-animation-delay: 2.3s; /* تأخير بدء التحريك في Chrome/Safari بمقدار 2.3 ثانية */
+    animation-delay: 2.3s;         /* تأخير بدء التحريك بشكل عام بمقدار 2.3 ثانية */
+}
+
+.p-4 {
+    -moz-animation-delay: 2.6s;    /* تأخير بدء التحريك في Firefox بمقدار 2.6 ثانية */
+    -webkit-animation-delay: 2.6s; /* تأخير بدء التحريك في Chrome/Safari بمقدار 2.6 ثانية */
+    animation-delay: 2.6s;         /* تأخير بدء التحريك بشكل عام بمقدار 2.6 ثانية */
+}
+
+.p-5 {
+    -moz-animation-delay: 2.9s;    /* تأخير بدء التحريك في Firefox بمقدار 2.9 ثانية */
+    -webkit-animation-delay: 2.9s; /* تأخير بدء التحريك في Chrome/Safari بمقدار 2.9 ثانية */
+    animation-delay: 2.9s;         /* تأخير بدء التحريك بشكل عام بمقدار 2.9 ثانية */
+}
+
+.p-6 {
+    -moz-animation-delay: 3.1s;    /* تأخير بدء التحريك في Firefox بمقدار 3.1 ثانية */
+    -webkit-animation-delay: 3.1s; /* تأخير بدء التحريك في Chrome/Safari بمقدار 3.1 ثانية */
+    animation-delay: 3.1s;         /* تأخير بدء التحريك بشكل عام بمقدار 3.1 ثانية */
+}
+
+.p-7 {
+    -moz-animation-delay: 3.4s;      /* تأخير بدء التحريك في Firefox بمقدار 3.4 ثانية */
+    -webkit-animation-delay: 3.4s;   /* تأخير بدء التحريك في Chrome/Safari بمقدار 3.4 ثانية */
+    animation-delay: 3.4s;           /* تأخير بدء التحريك بشكل عام بمقدار 3.4 ثانية */
+}
+
+.blog-posts {
+    margin-bottom: 80px;             /* يضيف مسافة 80px أسفل الحاوية التي تحتوي جميع المقالات */
+}
+
+.blog-item {
+    position: relative;               /* يحدد موضع العنصر بالنسبة للعناصر الداخلية أو الأب */
+    overflow: hidden;                 /* يخفي أي محتوى يتجاوز حدود العنصر */
+    @extned %clearfix;;padding: 20px; /* يبدو أنه خطأ مطبعي: يقصد ربما @extend %clearfix; أو padding: 20px */
+    color:  #d49e4d;                  /* يحدد لون النص داخل المقالة بالذهبي/البني (#d49e4d) */
+    text-align: center;               /* يجعل النصوص داخل المقالة في منتصف العنصر */
+    margin-bottom: 30px;              /* يضيف مسافة 30px أسفل كل مقال */
+}
+
+.blog-item a {
+    color: #d49e4d;                  /* يلون روابط المقالة باللون الذهبي/البني (#d49e4d) */
+}
+
+.blog-item h3 {
+    font-size: 20px;                  /* يحدد حجم الخط للعناوين داخل المقالة 20px */
+    font-weight: normal;              /* يجعل سماكة الخط عادية */
+    letter-spacing: 1px;              /* يضيف مسافة 1px بين الأحرف لزيادة الوضوح */
+}
+
+.blog-item:hover .blog-bg {
+    -moz-transform: scale(1.2, 1.2);      /* تكبير الخلفية 1.2x عند التحويم في Firefox */
+    -ms-transform: scale(1.2, 1.2);       /* تكبير الخلفية 1.2x عند التحويم في IE */
+    -o-transform: scale(1.2, 1.2);        /* تكبير الخلفية 1.2x عند التحويم في Opera */
+    -webkit-transform: scale(1.2, 1.2);   /* تكبير الخلفية 1.2x عند التحويم في Chrome/Safari */
+    transform: scale(1.2, 1.2);           /* تكبير الخلفية 1.2x عند التحويم بشكل عام */
+}
+
+span.solid-line {
+    width: 60px;               /* عرض الخط الصلب 60px */
+    height: 2px;               /* ارتفاع الخط 2px */
+    background: #fff7e6;       /* لون الخط رملي فاتح */
+    display: block;             /* يجعل العنصر يظهر ككتلة منفصلة */
+    margin-left: auto;          /* يوسّط العنصر أفقيًا */
+    margin-right: auto;         /* يوسّط العنصر أفقيًا */
+    margin-top: 30px;           /* مسافة 30px فوق العنصر */
+    margin-bottom: 30px;        /* مسافة 30px أسفل العنصر */
+}
+
+.post-button {
+    font-size: 12px;            /* حجم الخط داخل الزر 12px */
+    text-transform: uppercase;  /* تحويل نص الزر إلى أحرف كبيرة */
+    font-weight: 100;           /* جعل الخط غليظ */
+    padding: 12px 20px;         /* مساحة داخلية 12px عموديًا و20px أفقيًا */
+    background: #eee;           /* خلفية الزر رمادية فاتحة */
+}
+
+.blog-bg {
+    position: absolute;               /* يجعل العنصر مطلق الموضع داخل الحاوية */
+    width: 100%;                       /* يجعل العنصر يغطي كامل عرض الحاوية */
+    height: 100%;                      /* يجعل العنصر يغطي كامل ارتفاع الحاوية */
+    top: 0;                            /* يثبت العنصر من الأعلى */
+    left: 0;                           /* يثبت العنصر من اليسار */
+    background-size: cover;            /* يملأ الخلفية بالكامل مع الحفاظ على نسبة العرض والارتفاع */
+    background-repeat: no-repeat;      /* يمنع تكرار الصورة */
+    z-index: 8;                        /* يضع العنصر فوق عناصر أخرى ذات قيمة z-index أقل */
+    -webkit-transition: all 200ms ease-in-out;  /* يجعل جميع التغييرات الانتقالية سلسة في Chrome/Safari */
+    -moz-transition: all 200ms ease-in-out;     /* نفس التأثير في Firefox */
+    -ms-transition: all 200ms ease-in-out;      /* نفس التأثير في IE */
+    -o-transition: all 200ms ease-in-out;       /* نفس التأثير في Opera */
+    transition: all 200ms ease-in-out;          /* الانتقال بشكل عام لكل المتصفحات الحديثة */
+}
+
+.blog-blue {
+    background: url("../img/blog-blue.jpg");   /* يحدد خلفية الصورة الزرقاء للمقالة */
+}
+
+.blog-pink {
+    background: url("../img/blog-pink.jpg");   /* يحدد خلفية الصورة الوردية للمقالة */
+}
+
+.blog-green {
+    background: url("../img/blog-green.jpg");  /* يحدد خلفية الصورة الخضراء للمقالة */
+}
+
+.post-1 {
+    -moz-animation-delay: 2.3s;      /* تأخير بدء التحريك في Firefox بمقدار 2.3 ثانية */
+    -webkit-animation-delay: 2.3s;   /* تأخير بدء التحريك في Chrome/Safari بمقدار 2.3 ثانية */
+    animation-delay: 2.3s;           /* تأخير بدء التحريك بشكل عام بمقدار 2.3 ثانية */
+}
+
+.post-2 {
+    -moz-animation-delay: 2.8s;      /* تأخير بدء التحريك في Firefox بمقدار 2.8 ثانية */
+    -webkit-animation-delay: 2.8s;   /* تأخير بدء التحريك في Chrome/Safari بمقدار 2.8 ثانية */
+    animation-delay: 2.8s;           /* تأخير بدء التحريك بشكل عام بمقدار 2.8 ثانية */
+}
+
+.post-3 {
+    -moz-animation-delay: 3.3s;      /* تأخير بدء التحريك في Firefox بمقدار 3.3 ثانية */
+    -webkit-animation-delay: 3.3s;   /* تأخير بدء التحريك في Chrome/Safari بمقدار 3.3 ثانية */
+    animation-delay: 3.3s;           /* تأخير بدء التحريك بشكل عام بمقدار 3.3 ثانية */
+}
+
+.blog-content {
+    position: relative;               /* يحدد موضع العنصر بالنسبة للعناصر الداخلية أو الأب */
+    z-index: 9;                        /* يضع العنصر فوق الخلفية (.blog-bg) التي لها z-index أقل */
+    background: #fff;                  /* يجعل خلفية المحتوى بيضاء */
+    padding: 60px 30px;                /* يضيف مسافة داخلية 60px عموديًا و30px أفقيًا */
+}
+
+.blog-content p {
+    line-height: 1.75em;              /* يحدد ارتفاع السطر للنصوص داخل المحتوى */
+    margin-bottom: 35px;              /* يضيف مسافة 35px أسفل كل فقرة */
+}
+
+.blog-header {
+    margin-bottom: 90px;              /* يضيف مسافة 90px أسفل عنوان المدونة */
+}
+
+.blog-header h2 {
+    font-size: 40px;                  /* حجم الخط للعناوين داخل هيدر المدونة 40px */
+    color:  #d49e4d;                  /* لون النص ذهبي/بني (#d49e4d) */
+    margin-bottom: 30px;              /* مسافة 30px أسفل العنوان */
+    font-weight: 100;                 /* سماكة الخط خفيفة جدًا */
+    -moz-animation-delay: 0.5s;       /* تأخير بدء التحريك في Firefox بمقدار 0.5 ثانية */
+    -webkit-animation-delay: 0.5s;    /* تأخير بدء التحريك في Chrome/Safari بمقدار 0.5 ثانية */
+    animation-delay: 0.5s;            /* تأخير بدء التحريك بشكل عام بمقدار 0.5 ثانية */
+}
+
+.blog-header p {
+    font-size: 20px;                  /* حجم الخط للنصوص داخل هيدر المدونة 20px */
+    line-height: 1.75em;              /* ارتفاع السطر للنصوص لضمان سهولة القراءة */
+    margin-bottom: 35px;              /* مسافة 35px أسفل الفقرة */
+    -moz-animation-delay: 1.2s;       /* تأخير بدء التحريك في Firefox بمقدار 1.2 ثانية */
+    -webkit-animation-delay: 1.2s;    /* تأخير بدء التحريك في Chrome/Safari بمقدار 1.2 ثانية */
+    animation-delay: 1.2s;            /* تأخير بدء التحريك بشكل عام بمقدار 1.2 ثانية */
+}
+
+.blog-button {
+    background: #d49e4d;              /* لون خلفية الزر ذهبي/بني */
+    text-transform: uppercase;        /* يحول نص الزر إلى أحرف كبيرة */
+    font-weight: 700;                 /* يجعل الخط غليظ */
+    font-size: 12px;                  /* حجم الخط داخل الزر 12px */
+    padding: 12px 20px;               /* مساحة داخلية 12px عموديًا و20px أفقيًا */
+    color: #fff !important;           /* لون النص أبيض ويأخذ الأولوية على أي تحديد آخر */
+    -moz-animation-delay: 1.9s;       /* تأخير بدء التحريك في Firefox بمقدار 1.9 ثانية */
+    -webkit-animation-delay: 1.9s;    /* تأخير بدء التحريك في Chrome/Safari بمقدار 1.9 ثانية */
+    animation-delay: 1.9s;            /* تأخير بدء التحريك بشكل عام بمقدار 1.9 ثانية */
+    border-radius: 5px;               /* يعطي الزر زوايا دائرية نصف قطرها 5px */
+}
+
+.contact-header {
+    margin-bottom: 100px;           /* يضيف مسافة 100px أسفل رأس قسم الاتصال */
+}
+
+.contact-header h2 {
+    font-size: 36px;                 /* حجم الخط لعنوان الاتصال 36px */
+    font-weight: 100;                /* سماكة الخط خفيفة جدًا */
+    color: #d49e4d;                     /* لون النص أبيض */
+    margin-bottom: 30px;             /* مسافة 30px أسفل العنوان */
+    -moz-animation-delay: 0.5s;      /* تأخير بدء التحريك في Firefox بمقدار 0.5 ثانية */
+    -webkit-animation-delay: 0.5s;   /* تأخير بدء التحريك في Chrome/Safari بمقدار 0.5 ثانية */
+    animation-delay: 0.5s;           /* تأخير بدء التحريك بشكل عام بمقدار 0.5 ثانية */
+}
+
+.contact-header p {
+    font-size: 20px;                 /* حجم الخط للنص داخل رأس الاتصال 17px */
+    line-height: 1.75em;             /* ارتفاع السطر للنصوص لضمان سهولة القراءة */
+    -moz-animation-delay: 1.4s;      /* تأخير بدء التحريك في Firefox بمقدار 1.4 ثانية */
+    -webkit-animation-delay: 1.4s;   /* تأخير بدء التحريك في Chrome/Safari بمقدار 1.4 ثانية */
+    animation-delay: 1.4s;           /* تأخير بدء التحريك بشكل عام بمقدار 1.4 ثانية */
+}
+
+.contact-social {
+    -moz-animation-delay: 2s;        /* تأخير بدء التحريك في Firefox بمقدار 2 ثانية */
+    -webkit-animation-delay: 2s;     /* تأخير بدء التحريك في Chrome/Safari بمقدار 2 ثانية */
+    animation-delay: 2s;             /* تأخير بدء التحريك بشكل عام بمقدار 2 ثانية */
+}
+
+.contact-social li {
+    display: inline-block;           /* يجعل عناصر القائمة تظهر بجانب بعضها أفقيًا */
+    margin: 0 20px;                  /* مسافة 20px يمين ويسار كل عنصر */
+}
+
+.contact-social li i {
+    font-size: 24px;                /* حجم أيقونات التواصل الاجتماعي 24px */
+}
+
+.contact-holder {
+    background:  #d49e4d;           /* خلفية القسم الرئيسي للاتصال باللون الذهبي/بني */
+    margin-bottom: 100px;           /* مسافة 100px أسفل القسم */
+}
+
+.googlemap-wrapper {
+    -moz-animation-delay: 2.7s;     /* تأخير بدء التحريك في Firefox بمقدار 2.7 ثانية */
+    -webkit-animation-delay: 2.7s;  /* تأخير بدء التحريك في Chrome/Safari بمقدار 2.7 ثانية */
+    animation-delay: 2.7s;          /* تأخير بدء التحريك بشكل عام بمقدار 2.7 ثانية */
+}
+
+.map-canvas {
+    height: 505px;                  /* ارتفاع الخريطة 505px */
+}
+
+#map_canvas {
+    width: 100%;                     /* عرض الخريطة يغطي كامل الحاوية */
+    height: 505px;                   /* ارتفاع الخريطة 505px */
+}
+
+#map_canvas img {
+    max-width: none;                 /* يمنع أي قيود على عرض الصور داخل الخريطة */
+}
+
+.contact-form {
+    -moz-animation-delay: 3.5s;     /* تأخير بدء التحريك في Firefox بمقدار 3.5 ثانية */
+    -webkit-animation-delay: 3.5s;  /* تأخير بدء التحريك في Chrome/Safari بمقدار 3.5 ثانية */
+    animation-delay: 3.5s;          /* تأخير بدء التحريك بشكل عام بمقدار 3.5 ثانية */
+    padding-right: 30px;             /* مسافة داخلية 30px من الجانب الأيمن للنموذج */
+}
+
+@media screen and (max-width: 992px) {
+    .contact-form {
+        padding-left: 30px;          /* عند عرض الشاشة أقل من 992px، يتم إضافة مسافة 30px من اليسار للنموذج */
+    }
+}
+
+.contact-form h4 {
+    color: #fff;                     /* لون العنوان داخل النموذج أبيض */
+    font-size: 24px;                  /* حجم الخط للعنوان 24px */
+    margin: 30px 0;                   /* مسافة 30px فوق وتحت العنوان */
+}
+
+.contact-form input,
+.contact-form textarea {
+    background: #fff7e6;             /* لون خلفية الحقول فاتح رملي */
+    border: 0;                        /* إزالة الحدود الافتراضية للحقول */
+    outline: 0;                       /* إزالة إطار التركيز الافتراضي عند النقر على الحقل */
+    color: #fff;                       /* لون النص داخل الحقول أبيض */
+    font-size: 13px;                  /* حجم الخط داخل الحقول 13px */
+    height: 44px;                     /* ارتفاع الحقل 44px */
+    max-width: 100%;                  /* الحد الأقصى للعرض 100% من الحاوية */
+    width: 100%;                      /* العرض يغطي كامل الحاوية */
+    margin-bottom: 30px;              /* مسافة 30px أسفل كل حقل */
+    padding: 10px;                    /* مسافة داخلية 10px داخل الحقل */
+}
+
+.contact-form textarea {
+    height: 150px;                    /* ارتفاع مربع النص (textarea) أكبر 150px لتسهيل الكتابة */
+}
+
+.message-button {
+    text-transform: uppercase;       /* تحويل نص الزر إلى أحرف كبيرة */
+    font-weight: 700;                /* جعل الخط غليظ */
+    font-size: 12px;                 /* حجم الخط 12px */
+    background:  #fff7e6;            /* خلفية الزر لون رملي فاتح */
+    color: #d49e4d !important;          /* لون النص أبيض ويأخذ الأولوية على أي تحديد آخر */
+    padding: 12px 20px;              /* مساحة داخلية 12px عموديًا و20px أفقيًا */
+    display: inline-block;           /* يجعل الزر يظهر ككتلة صغيرة يمكن وضعها بجانب عناصر أخرى */
+    margin-bottom: 30px;             /* مسافة 30px أسفل الزر */
+}
+
+.main-footer {
+    border-top: 2px solid #fff7e6;   /* خط علوي للـ footer بعرض 2px ولون رملي فاتح */
+    border-bottom: 2px solid #fff7e6;/* خط سفلي للـ footer بعرض 2px ولون رملي فاتح */
+    padding: 30px 0 15px 0;           /* مساحة داخلية: 30px أعلى، 15px أسفل، صفر يمين ويسار */
+}
+
+.main-footer .social li {
+    display: inline-block;           /* ترتيب أيقونات التواصل الاجتماعي أفقيًا */
+    margin: 0 15px 15px 15px;       /* مسافة 15px يمين ويسار وأسفل كل أيقونة */
+}
+
+.main-footer .social li a {
+    padding: 20px;                   /* مساحة داخلية 20px حول كل أيقونة */
+}
+
+.main-footer .social li a:hover {
+    background: #fff7e6;             /* عند المرور بالماوس على الأيقونة، يتغير الخلفية إلى رملي فاتح */
+    border-color: #d49e4d;           /* عند المرور بالماوس، لون الحدود يتحول إلى ذهبي/بني */
+}
+
+.copyright {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.copyright p {
+    margin-bottom: 10px;             /* مسافة 10px أسفل الفقرة داخل قسم حقوق النشر */
+    font-size: 12px;                 /* حجم الخط للنص 12px */
+}
+
+html {
+    font-size: 93.75%;               /* حجم الخط الأساسي للصفحة: 15px إذا كان 100% = 16px */
+    -moz-osx-font-smoothing: grayscale;  /* تحسين وضوح الخطوط على أجهزة Mac (Firefox) */
+    -webkit-font-smoothing: antialiased; /* تحسين وضوح الخطوط على متصفحات WebKit */
+}
+
+body {
+    background: #fff7e6;             /* لون خلفية الصفحة رملي فاتح */
+    font-size: 15px;                 /* حجم الخط الأساسي للنصوص 15px */
+    font-weight: 300;                /* سماكة الخط خفيفة */
+    color: #d49e4d;                  /* لون النص الأساسي ذهبي/بني */
+    padding: 20px;                   /* مسافة داخلية 20px حول محتوى الصفحة */
+    font-family: "Roboto",sans-serif; /* نوع الخط الأساسي المستخدم في الصفحة */
+    line-height: 1.55;               /* ارتفاع السطر للنصوص لتسهيل القراءة */
+    text-rendering: optimizeLegibility; /* تحسين وضوح النصوص وخاصة الأحرف الطويلة */
+    -webkit-backface-visibility: hidden; /* تحسين أداء التحريك وإخفاء العيوب في متصفحات WebKit */
+    overflow-x: hidden;              /* يمنع ظهور شريط تمرير أفقي عند تجاوز المحتوى للعرض */
+}
+
+p {
+    margin-bottom: 30px;             /* مسافة 30px أسفل كل فقرة لتوفير فصل بين النصوص */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-transform: uppercase;       /* تحويل جميع العناوين إلى أحرف كبيرة */
+}
+
+h1 {
+    font-size: 36px;                 /* حجم الخط للعنوان الرئيسي h1 */
+}
+
+h2 {
+    font-size: 30px;                 /* حجم الخط للعنوان h2 */
+}
+
+h3 {
+    font-size: 24px;                 /* حجم الخط للعنوان h3 */
+}
+
+h4 {
+    font-size: 20px;                 /* حجم الخط للعنوان h4 */
+}
+
+h5 {
+    font-size: 18px;                 /* حجم الخط للعنوان h5 */
+}
+
+h6 {
+    font-size: 18px;                 /* حجم الخط للعنوان h6 */
+}
+
+a {
+    color: #d49e4d;                         /* لون النص للرابط أبيض */
+    text-decoration: none;               /* إزالة الخط السفلي الافتراضي للرابط */
+    -webkit-transition: all 100ms ease-in-out;  /* تأثير انتقال سلس عند تغير خصائص الرابط في Chrome/Safari */
+    -moz-transition: all 100ms ease-in-out;     /* نفس التأثير في Firefox */
+    -ms-transition: all 100ms ease-in-out;      /* نفس التأثير في IE */
+    -o-transition: all 100ms ease-in-out;       /* نفس التأثير في Opera */
+    transition: all 100ms ease-in-out;          /* التأثير بشكل عام لجميع المتصفحات الحديثة */
+}
+
+a:hover {
+    color: inherit;                       /* عند مرور الماوس على الرابط، يحتفظ بلون العنصر الأب */
+    text-decoration: none;                /* التأكد من عدم ظهور خط تحت الرابط عند hover */
+}
+
+span[class*="border-"] {
+    position: fixed;                      /* يجعل العنصر ثابتًا على الشاشة عند التمرير */
+    background: #d49e4d;                  /* لون الخلفية ذهبي/بني */
+}
+
+.border-top {
+    top: 0;                               /* يثبت العنصر في أعلى الصفحة */
+    left: 0;                              /* يثبت العنصر على أقصى يسار الصفحة */
+    width: 100%;                           /* يمتد العنصر بعرض كامل الصفحة */
+    height: 10px;                          /* ارتفاع العنصر 20px */
+}
+
+.border-left {
+    top: 0;                             /* يثبت العنصر في أعلى الصفحة */
+    left: 0;                            /* يثبت العنصر على أقصى يسار الصفحة */
+    width: 10px;                         /* عرض الشريط 20px */
+    height: 100%;                        /* ارتفاع الشريط يغطي كامل طول الصفحة */
+}
+
+.border-bottom {
+    bottom: 0;                           /* يثبت العنصر في أسفل الصفحة */
+    left: 0;                             /* يثبت العنصر على أقصى يسار الصفحة */
+    width: 100%;                          /* عرض العنصر يغطي كامل عرض الصفحة */
+    height: 10px;                         /* ارتفاع الشريط 20px */
+}
+
+.border-right {
+    top: 0;                              /* يثبت العنصر في أعلى الصفحة */
+    right: 0;                             /* يثبت العنصر على أقصى يمين الصفحة */
+    width: 10px;                          /* عرض الشريط 20px */
+    height: 100%;                         /* ارتفاع الشريط يغطي كامل طول الصفحة */
+}
+
+
+.main-button,
+.main-footer .social li a {
+    color: #d49e4d;                       /* لون النص ذهبي/بني */
+    text-transform: uppercase;             /* تحويل النصوص إلى أحرف كبيرة */
+    font-size: 12px;                       /* حجم الخط 12px */
+    padding: 10px 15px;                    /* مساحة داخلية: 10px عموديًا و15px أفقيًا */
+    display: inline-block;                 /* يظهر الزر/الرابط ككتلة صغيرة يمكن وضعها بجانب عناصر أخرى */
+    border: 2px solid #d49e4d;            /* إطار بعرض 2px ولون ذهبي/بني */
+}
+
+.pink-button {
+    color: #fff7e6;                        /* لون النص رملي فاتح */
+    text-transform: uppercase;             /* تحويل النصوص إلى أحرف كبيرة */
+    font-size: 12px;                       /* حجم الخط 12px */
+    padding: 10px 15px;                    /* مساحة داخلية: 10px عموديًا و15px أفقيًا */
+    display: inline-block;                 /* يظهر الزر ككتلة صغيرة يمكن وضعها بجانب عناصر أخرى */
+    background: #d49e4d;                   /* خلفية الزر ذهبي/بني */
+    font-weight: normal;                   /* الخط ليس غليظًا */
+}
+
+.pink-button:hover {
+    color: #d49e4d;                        /* عند المرور بالماوس، يتغير لون النص إلى ذهبي/بني */
+}
+
+/* عند المرور على الزر أو الزر النشط */
+nav.main-navigation ul.main-menu li a:hover,
+nav.main-navigation ul.main-menu li a.active {
+  background-color: #d49e4d;  /* عند المرور بالماوس أو الرابط النشط، خلفية العنصر تصبح بني/ذهبي */
+  color: #fff;                 /* لون النص يصبح أبيض */
+  border-color: #d49e4d;       /* لون حدود الرابط يصبح بني/ذهبي */
+}
+
+body {
+  font-family: "Cairo", sans-serif;
+  margin: 0;
+  background-color: #fcf4e5;
+}
+
+/* الهيدر */
+header.site-header {
+  background-color: transparent !important;
+  padding: 5px 35px;
+  width: 100vw;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* الحاوية الرئيسية للصفحة */
+body {
+  display: flex;
+  justify-content: center; /* توسيط أفقياً */
+  align-items: center;     /* توسيط عمودياً */
+  flex-direction: column;  /* إذا لديك عناصر فوق وتحت */
+  background-color: #fcf4e5;
+}
+
+
+
+
+
+
+/* الحاوية الرئيسية */
+.site-header {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* توسيط المحتوى بالكامل أفقياً */
+  background-color: #fcf4e5;
+}
+
+/* الحاوية الداخلية التي تحتوي اللوغو والقائمة */
+.header-inner {
+  width: 100%;               /* يمكن تعديلها حسب رغبتك */
+  display: flex;
+  justify-content: space-between; /* اللوغو يمين، القائمة يسار */
+  align-items: center;       /* لمحاذاة العناصر عمودياً في الوسط */
+  padding: 0px 0;
+}
+
+.main-menu ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-menu a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
+
+
+.header-inner {
+  width: 100%;               /* حسب ما ضبطنا سابقاً */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 0;
+  border-bottom: 1.5px solid #d49e4d; /* هذا الخط يمتد من القائمة إلى اللوغو */
+}
+
